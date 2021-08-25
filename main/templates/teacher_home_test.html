@@ -51,26 +51,145 @@
 
 <body>
 
-    <button onClick="teacher_event_page()">Events</button>
-    <button onClick="teacher_announcement_page()">Announcements</button>
-    <button onClick="teacher_club_page()">Clubs</button>
+    <nav class="navbar shadow-sm sticky-top navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">SCHOOLHUB</a>
+            <ul class="navbar-nav ms-auto" >
+              <li class="nav-item">
+                <span class="nav-link">School Name</span>
+              </li>
+                <span class="nav-link">|</span>
+              <li class="nav-item">
+                <span class="nav-link">Teacher Name</span>
+              </li>
+            </ul>
+          </div>
+        
+      </nav>
 
+      <h1 class="dashboard">Dashboard</h1>
+      <hr>
+
+    <div class="container-fluid navigationMini">
+    <button class="navMini"onClick="teacher_event_page()">events</button>
+    <button class="navMini"onClick="teacher_announcement_page()">announcements</button>
+    <button class="navMini"onClick="teacher_club_page()">clubs</button>
+    </div>
+
+    <style>
+        nav{
+            background-color: white;
+            margin-bottom: 40px;
+            border-color: #c5c3c3;
+            border-width: 1px;
+        }
+        .navbar .navbar-brand{
+            color: #E54444;
+            font-weight: 700;
+        }
+        .navbar .navbar-brand:hover{
+            color: gray;
+        }
+        .navbar .nav-item .nav-link{
+            color: black;
+        }
+        .dashboard{
+            font-size: 4rem;
+            text-align: center;
+            color: #E54444;
+            font-weight: 500;
+        }
+        .navigationMini{
+            padding: 15px;
+            background-color: #E54444;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        hr{
+            margin: auto;
+            width: 150px;
+            color: #E54444;
+            border: none;
+            height: 2px!important;
+            opacity: 100%;
+        }
+        .navMini{
+            background-color: transparent;
+            color: white;
+            font-size: 1.5rem;
+            border: none;
+            text-align: center;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .addAnnouncement{
+            background-color: #EC7F00;
+            color: white;
+            border-radius: 10px;
+            border: none;
+            padding: 10px;
+            margin-bottom: 30px;
+            
+        }
+        .announcement-list{
+            background-color: #F3F3F3;
+            border-bottom-style: solid;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-width: 2px;
+            border-bottom-color: #c5c3c3;
+
+            color: black;
+            padding: 15px;
+        }
+        .view{
+            background-color: #E54444;
+            color: white;
+            border:none;    
+            border-radius: 10px;
+            padding: 5px 25px 5px 25px;
+            
+            
+        }
+        h1{
+            font-size: 2rem;
+            font-weight: 400;
+        }
+        h4{
+            font-size: 1rem;
+            color: #575757;
+            font-weight: 400;
+            max-width: 100%;
+        }
+        
+    </style>
+<div class="container announcements">
     <form method="POST">
 
         {% csrf_token %}
 
-        <button name="create_announcement" type="submit">Create Announcement</button>
+        <button class="addAnnouncement" name="create_announcement" type="submit">Create Announcement</button>
 
+        
         {% for announcement in announcements %}
-
+        <div class="announcement-list row">
+            <div class='col-10'>
             <h1>{{announcement.announcement_title}}</h1>
             <h4>{{announcement.announcement_content}}</h4>
-            <button name="{{announcement.id}}" type="submit">View</button>
-
+        </div>
+            <div class="col-2">
+            <button class="view" name="{{announcement.id}}" type="submit">View</button>
+        
+        </div>
+</div>
         {% endfor %}
-
-    </form>
     
+    </form>
+</div>
+
+<br>
+<br>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
