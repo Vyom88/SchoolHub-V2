@@ -51,16 +51,16 @@
 
 <body>
 
-    <nav class="navbar shadow-sm sticky-top navbar-expand-lg navbar-light">
+    <nav class="navbar shadow-sm sticky-top navbar-expand navbar-light">
         <div class="container">
           <a class="navbar-brand" href="#">SCHOOLHUB</a>
-            <ul class="navbar-nav ms-auto" >
-              <li class="nav-item">
-                <span class="nav-link">School Name</span>
+            <ul class="navbar-nav" >
+              <li class="">
+                <span class="nav-link disabled">School Name</span>
               </li>
-                <span class="nav-link">|</span>
-              <li class="nav-item">
-                <span class="nav-link">Teacher Name</span>
+                <span class="nav-link disabled">|</span>
+              <li class="">
+                <span class="nav-link disabled">Teacher Name</span>
               </li>
             </ul>
           </div>
@@ -70,10 +70,10 @@
       <h1 class="dashboard">Dashboard</h1>
       <hr>
 
-    <div class="container-fluid navigationMini">
-    <button class="navMini"onClick="teacher_event_page()">events</button>
-    <button class="navMini"onClick="teacher_announcement_page()">announcements</button>
-    <button class="navMini"onClick="teacher_club_page()">clubs</button>
+    <div class="container-fluid navigationMini row">
+    <button class="navMini col-sm text-sm-end"id="events"onClick="teacher_event_page()">events</button>
+    <button class="navMini col-sm"id="announcements"onClick="teacher_announcement_page()">announcements</button>
+    <button class="navMini col-sm text-sm-start"id="clubs"onClick="teacher_club_page()">clubs</button>
     </div>
 
     <style>
@@ -123,6 +123,9 @@
             margin-left: 20px;
             margin-right: 20px;
         }
+        #announcements{
+            font-weight: 700;
+        }
         .addAnnouncement{
             background-color: #EC7F00;
             color: white;
@@ -133,15 +136,21 @@
             
         }
         .announcement-list{
-            background-color: #F3F3F3;
+            background-color: transparent;
             border-bottom-style: solid;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            
             border-bottom-width: 2px;
             border-bottom-color: #c5c3c3;
 
             color: black;
             padding: 15px;
+        }
+        .announcements-whole{
+            
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+         
+            background-color: #F3F3F3;
         }
         .view{
             background-color: #E54444;
@@ -149,7 +158,7 @@
             border:none;    
             border-radius: 10px;
             padding: 5px 25px 5px 25px;
-            
+            margin: auto;
             
         }
         h1{
@@ -171,20 +180,19 @@
 
         <button class="addAnnouncement" name="create_announcement" type="submit">Create Announcement</button>
 
-        
+        <div class="container announcements-whole">
         {% for announcement in announcements %}
         <div class="announcement-list row">
             <div class='col-10'>
             <h1>{{announcement.announcement_title}}</h1>
             <h4>{{announcement.announcement_content}}</h4>
+            </div>
+            <div class=" col-2 justify-content-center d-flex">
+            <button class="view " name="{{announcement.id}}" type="submit">View</button>
+            </div>
         </div>
-            <div class="col-2">
-            <button class="view" name="{{announcement.id}}" type="submit">View</button>
-        
-        </div>
-</div>
         {% endfor %}
-    
+    </div>
     </form>
 </div>
 
