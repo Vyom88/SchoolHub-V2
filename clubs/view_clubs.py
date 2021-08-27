@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from register.models import Announcements, Club, Member
 from register.decorators import teacher_required
 from django.contrib.auth.decorators import login_required
+from register import models
 from . import user_in_club
 from . import order_members
 
@@ -111,6 +112,9 @@ def teacher_view_club(request, id):
         elif member.isCreator and 'delete_club' in request.POST:
             club.delete()
             return HttpResponseRedirect('/teacher-clubs')
+
+        elif "refresh" in request.POST:
+            club.passcode = models.generate_random_passcode()
 
         else:
             for event in club.events_set.all():
