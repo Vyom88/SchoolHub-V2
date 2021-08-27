@@ -1,5 +1,30 @@
 {%extends 'base_teacher.html'%}
 
+
+
+    {%block body%}
+    <div class="container announcements">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="buttons"name="create_event" type="submit">Create Event</button>
+        <div class=" announcements-whole">
+        {% for event in events %}
+        <div class="announcement-list row">
+            <div class='col-10'>
+        <h1 style="display: inline;">{{event.event_title}} </h1><h5 style="display: inline;">• At {{event.event_date}}</h5>
+        <h4>{{event.event_content}} </h4></div>
+        <div class=" col-2 justify-content-center d-flex">
+        <button class="view"name="{{event.id}}" type="submit">View</button>
+        </div>
+</div>
+        {% endfor %}
+</div>
+    </form>
+</div>
+    {%endblock%}
+
     {%block script%}
     
     <script>
@@ -35,28 +60,3 @@
 
     </script>
 {%endblock%}
-
-
-    {%block body%}
-    <div class="container announcements">
-    <form method="POST">
-
-        {% csrf_token %}
-
-        <button class="buttons"name="create_event" type="submit">Create Event</button>
-        <div class="container announcements-whole">
-        {% for event in events %}
-        <div class="announcement-list row">
-            <div class='col-10'>
-        <h1 style="display: inline;">{{event.event_title}} </h1><h5 style="display: inline;">• At {{event.event_date}}</h5>
-        <h4>{{event.event_content}} </h4></div>
-        <div class=" col-2 justify-content-center d-flex">
-        <button class="view"name="{{event.id}}" type="submit">View</button>
-        </div>
-</div>
-        {% endfor %}
-</div>
-    </form>
-</div>
-    {%endblock%}
-
