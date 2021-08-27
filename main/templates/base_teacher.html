@@ -11,7 +11,11 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     {% load crispy_forms_tags %}
-
+    <script>
+        function logout() {
+            window.location.replace(domain + "/logout");
+        }
+    </script>
     {%block script%}
     {%endblock%}
     
@@ -32,7 +36,7 @@
               </li>
               <li class="container">
                   <div class="justify-content-center logout-button">
-                <button class="nav-link navbar-button logout" href="">Logout</button>
+                <button class="nav-link navbar-button logout" onClick="logout()">Logout</button>
             </div>
               </li>
             </ul>
