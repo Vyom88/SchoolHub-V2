@@ -39,6 +39,14 @@
             window.location.replace(domain + "/teacher-home");
         }
 
+        function kick2(clicked) {
+            var val = confirm("Do you want to kick " + clicked + " from {{club.name}}?");
+            if (val == true) {
+                let s = "kick" + clicked;
+                document.getElementById(s).click();
+            }
+        }
+
 
     </script>
 
@@ -59,10 +67,29 @@
                 <h1>{{member.user}} • Creator</h1>
             {% elif member.isCreator %}
                 <h1>{{member.user}} • Teacher</h1>
+                {% if m %}
+                <button type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                    class="{{member.user.username}}">Kick</button>
+                <button type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                {% endif %}
+
             {% elif member.isPresident %}
                 <h1>{{member.user}} • President</h1>
+                {% if m %}
+                <button type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                    class="{{member.user.username}}">Kick</button>
+                <button type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                {% endif %}
             {% else %}
                 <h1>{{member.user}} • Member</h1>
+                {% if m %}
+                <button type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                    class="{{member.user.username}}">Kick</button>
+                <button type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                {% endif %}
             {% endif %}
 
 

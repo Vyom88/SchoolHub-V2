@@ -31,6 +31,7 @@ def create_club(request):
             club = school.club_set.filter(name=name)[0]
             club.members.add(user, through_defaults={
                 'isPresident': False, 'isCreator': True, 'isOwner': True})
+            club.save()
 
             return HttpResponseRedirect('/teacher-clubs')
 
@@ -259,12 +260,27 @@ def member_list(request, id):
                     id=member.id, defaults={'isPresident': True})
                 break
 
+            else:
+                m = False
+                for member in members:
+                    if f"kick{member.user.username}" in request.POST:
+                        m = member.id
+                        break
+                if m:
+                    Member.objects.filter(id=m).delete()
+
         return HttpResponseRedirect(f'/teacher-view-club/{id}')
 
     #members = club.members.all()
+    m = members.get(user=user)
+    if m.isOwner:
+        m = True
+    else:
+        m = False
+
     members = order_members.members_list(members)
 
-    return render(request, 'teacher_member_list_test.html', {"user": user, "school": school, "club": club, "members": members})
+    return render(request, 'teacher_member_list_test.html', {"user": user, "school": school, "club": club, "members": members, "m": m})
 
 
 @login_required

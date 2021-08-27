@@ -39,6 +39,10 @@ def student_clubs_home(request):
             elif f'join{club.id}' in request.POST:
                 return HttpResponseRedirect(f'/student-join-club/{club.id}')
 
+            elif f'leave{club.name}' in request.POST:
+                Member.objects.filter(user=user, club=club).delete()
+                break
+
     else:
         clubs = yourClubs
 
@@ -58,7 +62,6 @@ def student_view_club(request, id):
 
     member = Member.objects.filter(club=club, user=user)[0]
     if member.isPresident:
-        print(id, end="\n\n\n")
         return HttpResponseRedirect(f'/president-view-club/{id}')
 
     if request.method == 'POST':
