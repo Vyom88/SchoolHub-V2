@@ -521,25 +521,26 @@
                     <a href="#">Forgot your password?</a>
                     <button type="submit">Sign Up</button> -->
                     
-
+                    
                     {% csrf_token %}
                     <!--{{form|crispy}}-->
-
+                        
                     {{ form.non_field_errors }}
-                    
+                
                     {% for hidden_field in form.hidden_fields %}
                         {{ hidden_field.errors }}
                         {{ hidden_field }}
                     {% endfor %}
-
+                    
                     {% for field in form.visible_fields %}
                         <!-- {{ field.label_tag }} -->
                         {{ field.errors }}
+                        
                         {{ field }}
                     {% endfor %}
-
+                
                     <input type="submit" value="Sign Up">
-
+                
 
                 </form>
             </div>

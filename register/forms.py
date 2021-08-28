@@ -42,7 +42,7 @@ class StudentSignUpForm(UserCreationForm):
 
 class TeacherSignUpForm(UserCreationForm):
     school = forms.ModelChoiceField(
-        queryset=School.objects.all(), required=True, to_field_name="name", empty_label="SELECT YOUR SCHOOL ▼")
+        queryset=School.objects.all(), required=True, to_field_name="name", empty_label="      Select your School ▼")
 
     class Meta(UserCreationForm.Meta):
         model = User

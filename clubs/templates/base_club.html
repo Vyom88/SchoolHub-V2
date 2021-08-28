@@ -22,7 +22,7 @@
 </head>
 
 <body>
-
+   
     <nav class="navbar shadow-sm sticky-top navbar-expand navbar-light">
         <div class="container">
           <a class="navbar-brand" href="#">SCHOOLHUB</a>
@@ -43,20 +43,11 @@
           </div>
         
       </nav>
-
-      <h1 class="dashboard">Dashboard</h1>
-      <hr>
-
-    <div class="container-fluid navigationMini row">
-    <button class="navMini col-sm text-sm-end"id="events"onClick="teacher_event_page()">events</button>
-    <button class="navMini col-sm"id="announcements"onClick="teacher_announcement_page()">announcements</button>
-    <button class="navMini col-sm text-sm-start"id="clubs"onClick="teacher_club_page()">clubs</button>
+      <div class="container-fluid top-bar">
     </div>
-
     <style>
         nav{
             background-color: white;
-            margin-bottom: 40px;
             border-color: #c5c3c3;
             border-width: 1px;
         }
@@ -80,6 +71,11 @@
         }
         .logout-button{
             vertical-align: middle;
+        }
+        .top-bar{
+            height: 20px;
+            background-color: #E54444;
+            margin-bottom: 40px;
         }
         .dashboard{
             font-size: 4rem;
@@ -179,7 +175,7 @@
             background-color: #E54444;
             border: none;
             border-radius: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 0px;
         }
         .heading{
             background-color: #EC7F00;

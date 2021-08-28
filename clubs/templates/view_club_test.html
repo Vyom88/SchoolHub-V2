@@ -1,3 +1,4 @@
+{%extends 'base_club.html'%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
 
     {% load crispy_forms_tags %}
 
-
+{%block script%}
     <script>
         domain = "http://127.0.0.1:8000";
         function teacherbutton() {
@@ -48,23 +49,33 @@
 
 
     </script>
-
+{%endblock%}
 
 </head>
 
 <body>
-
+{%block body%}
+<div class="container">
     <form method="POST">
 
         {% csrf_token %}
+   
+        <button class="back"name="back" type="submit">&#129044</button> <br>
+        
 
-        <button name="back" type="submit">Back</button> <br>
+        <h1 class="dashboard">{{club.name}}</h1> 
+        <hr>
+
+
         {% if member2.isOwner %}
-            <button type="button" onClick="delete_club2()">Delete Club</button>
+        <div class="">
+            <button class="buttons"type="button" onClick="delete_club2()">Delete Club</button>
             <br>
             <button type="submit" name="delete_club" style="visibility: hidden;" id="delete_club">Delete Club</button>
-        {% endif %}
-        <h2>{{club.name}}</h2> <h5>{{club.description}}</h5> <br> <h5>Passcode: {{passcode}}</h5>
+        </div>
+            {% endif %}
+
+        <h5>{{club.description}}</h5> <br> <h5>Passcode: {{passcode}}</h5>
 
         <button name="create_announcement" type="submit">Create Announcement</button>
 
@@ -108,14 +119,5 @@
         {% endfor %}
 
     </form>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+</div>
+{%endblock%}
