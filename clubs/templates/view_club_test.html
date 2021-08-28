@@ -77,7 +77,12 @@
 
         <h5>{{club.description}}</h5> <br> <h5>Passcode: {{passcode}}</h5>
 
+        {% if member2.isOwner %}
+            <button type="submit" name="refresh">Refresh (put a icon here)</button> <br> <br>
+        {% endif %}
+
         <button name="create_announcement" type="submit">Create Announcement</button>
+        
 
         <br> <br>
         <h4>Announcements</h4>
