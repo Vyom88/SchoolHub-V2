@@ -57,8 +57,8 @@
         <div class="create create-club announcements-whole-club">
             {% for member in members %}
             <div class="announcement-list row">
-                <div class="col-4">
-                    
+                
+
             {% if member.isOwner %}
                 <h5>{{member.user}}  Creator</h5>
             {% elif member.isCreator %}
