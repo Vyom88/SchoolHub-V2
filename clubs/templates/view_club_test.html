@@ -1,17 +1,5 @@
 {%extends 'base_club.html'%}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolHub</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {% load crispy_forms_tags %}
 
 {%block script%}
     <script>
@@ -51,9 +39,7 @@
     </script>
 {%endblock%}
 
-</head>
 
-<body>
 {%block body%}
 <div class="container">
     <form method="POST">
@@ -81,36 +67,65 @@
             <button type="submit" name="refresh">Refresh (put a icon here)</button> <br> <br>
         {% endif %}
 
-        <button name="create_announcement" type="submit">Create Announcement</button>
-        
+<div class="row">
+        <!--ANNOUNCEMENTS-->
 
+        <div class="col-8">
         <br> <br>
-        <h4>Announcements</h4>
+        <div class="heading-club heading"><h3>announcements</h3></div>
+        <div class="create create-club announcements-whole-club">
         {% for announcement in announcements %}
-
+        <div class="announcement-list row">
+            <div class='col-10'>
         <h1>{{announcement.announcement_title}}</h1>
         <h4>{{announcement.announcement_content}}</h4>
-        <button name="a{{announcement.id}}" type="submit">View</button>
-
+    </div>
+    <div class=" col-2 justify-content-center d-flex">
+        <button class="view" name="a{{announcement.id}}" type="submit">View</button>
+    </div>
+        </div>
         {% endfor %}
+    </div>
+    <button class="buttons"name="create_announcement" type="submit">Create Announcement</button>
 
+</div>
+
+        <!--EVENTS-->
+        <div class="col-4">
         <br> <br>
-        <button name="create_event" type="submit">Create Event</button>
 
-        <h4>Events</h4>
+        <div class="heading-club heading"><h3>Events</h3></div>
+
+        <div class="create create-club announcements-whole-club">
         {% for event in events %}
-        
+        <div class="announcement-list row">
+            <div class='col-9'>
         <h1>{{event.event_title}}</h1>
         <h4>{{event.event_content}} • {{event.event_date}}</h4>
-        <button name="e{{event.id}}" type="submit">View</button>
-        
-        {% endfor %}
+    </div>
+    
+    <div class=" col-3 justify-content-center d-flex">
+        <div class="container-fluid">
+        <button class="view"name="e{{event.id}}" type="submit">View</button>
+    </div>
+    </div>
+</div>
 
+        {% endfor %}
+</div>
+        <button class=" buttons"name="create_event" type="submit">Create Event</button>
+    </div>
+
+
+
+        <!--MEMBERS-->
+        <div class="col-4">
         <br> <br>
-        <button name="member_list" type="submit">Members list</button>
-        <h4>Members</h4>
+        <div class="heading-club heading"><h3>Members</h3></div>
+
+        <div class="create create-club announcements-whole-club">
         {% for member in members %}
-        
+        <div class="announcement-list row">
         {% if member.isOwner %}
             <h1>{{member.user}} • Creator</h1>
         {% elif member.isCreator %}
@@ -120,9 +135,15 @@
         {% else %}
             <h1>{{member.user}} • Member</h1>
         {% endif %}
-        
+        </div>
         {% endfor %}
+        </div>
+        <button class="buttons"name="member_list" type="submit">Members List</button>
+    </div>
 
+
+    </div>
     </form>
 </div>
+
 {%endblock%}
