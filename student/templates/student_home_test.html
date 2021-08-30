@@ -1,3 +1,4 @@
+{%extends 'base_student.html'%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,7 @@
 
     {% load crispy_forms_tags %}
 
-
+{%block script%}
     <script>
         domain = "http://127.0.0.1:8000";
         function teacherbutton() {
@@ -53,7 +54,7 @@
 
 
     </script>
-
+{%endblock%}
 
 </head>
 
@@ -63,20 +64,29 @@
     <button onClick="student_announcement_page()">Announcements</button>
     <button onClick="student_clubs_page()">Clubs</button>
 
+{%block body%}
+<div class="container">
     <form method="POST">
 
         {% csrf_token %}
         
+        <div class=" announcements-whole">
         {% for announcement in announcements %}
-
+        <div class="announcement-list row">
+            <div class='col-10'>
         <h1>{{announcement.announcement_title}}</h1>
         <h4>{{announcement.announcement_content}}</h4>
-        <button name="{{announcement.id}}" type="submit">View</button>
-
+            </div>
+            <div class=" col-2 justify-content-center d-flex">
+        <button class="view" name="{{announcement.id}}" type="submit">View</button>
+    </div>
+            </div>
         {% endfor %}
+    </div>
 
     </form>
-
+</div>
+{%endblock%}
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
