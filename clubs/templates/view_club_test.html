@@ -67,30 +67,35 @@
             <button type="submit" name="refresh">Refresh (put a icon here)</button> <br> <br>
         {% endif %}
 
-<div class="row">
+<div class="row align-items-start">
+
+
         <!--ANNOUNCEMENTS-->
 
-        <div class="col-8">
+        <div class=" col-8">
         <br> <br>
         <div class="heading-club heading"><h3>announcements</h3></div>
         <div class="create create-club announcements-whole-club">
         {% for announcement in announcements %}
-        <div class="announcement-list row">
-            <div class='col-10'>
+        
+        <div class="announcement-list row g-0 ">
+            <div class="col-10">
         <h1>{{announcement.announcement_title}}</h1>
         <h4>{{announcement.announcement_content}}</h4>
     </div>
-    <div class=" col-2 justify-content-center d-flex">
+    <div class="col-2 justify-content-center d-flex">
         <button class="view" name="a{{announcement.id}}" type="submit">View</button>
     </div>
-        </div>
+</div>
+        
         {% endfor %}
     </div>
-    <button class="buttons"name="create_announcement" type="submit">Create Announcement</button>
+    <button class="float-end buttons"name="create_announcement" type="submit">Create Announcement</button>
 
 </div>
 
         <!--EVENTS-->
+   
         <div class="col-4">
         <br> <br>
 
@@ -98,34 +103,32 @@
 
         <div class="create create-club announcements-whole-club">
         {% for event in events %}
-        <div class="announcement-list row">
+        <div class="announcement-list row g-0">
             <div class='col-9'>
         <h1>{{event.event_title}}</h1>
         <h4>{{event.event_content}} • {{event.event_date}}</h4>
     </div>
     
     <div class=" col-3 justify-content-center d-flex">
-        <div class="container-fluid">
+        
         <button class="view"name="e{{event.id}}" type="submit">View</button>
-    </div>
+    
     </div>
 </div>
 
         {% endfor %}
 </div>
-        <button class=" buttons"name="create_event" type="submit">Create Event</button>
-    </div>
+        <button class="float-end buttons"name="create_event" type="submit">Create Event</button>
+    
 
 
-
-        <!--MEMBERS-->
-        <div class="col-4">
-        <br> <br>
+    
+        <br> <br> <br> <br>
         <div class="heading-club heading"><h3>Members</h3></div>
 
         <div class="create create-club announcements-whole-club">
         {% for member in members %}
-        <div class="announcement-list row">
+        <div class="announcement-list row g-0">
         {% if member.isOwner %}
             <h1>{{member.user}} • Creator</h1>
         {% elif member.isCreator %}
@@ -138,11 +141,16 @@
         </div>
         {% endfor %}
         </div>
-        <button class="buttons"name="member_list" type="submit">Members List</button>
+        <button class="float-end buttons"name="member_list" type="submit">Members List</button>
     </div>
 
 
-    </div>
+</div>
+
+        <!--MEMBERS-->
+        
+
+    
     </form>
 </div>
 

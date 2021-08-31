@@ -56,45 +56,68 @@
         <div class="heading-club heading"><h3>Club Members</h3></div>
         <div class="create create-club announcements-whole-club">
             {% for member in members %}
-            <div class="announcement-list row">
+            <div class="announcement-list row g-0">
                 
-
+        
             {% if member.isOwner %}
-                <h5>{{member.user}}  Creator</h5>
+            <div class="col-3">
+                <h5>{{member.user}} creator</h5>
+            </div>
             {% elif member.isCreator %}
-                <h1>{{member.user}} • Teacher</h1>
+            <div class="col-3">
+                <h1>{{member.user}} teacher</h1>
+            </div>
                 {% if m %}
-
+            
+            <div class="col-3">
                 <button class="buttons"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
+                </div>
+            <div class="col-4">
                 <button class="buttons"type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                {% endif %}
-
+                </div>
+                    {% endif %}
+            
             {% elif member.isPresident %}
+            <div class="col-3">
                 <h1>{{member.user}} • President</h1>
+            </div>
                 {% if m %}
+                <div class="col-3">
                 <button class="view" type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
+                </div>
+                <div class="col-3">
                 <button class="view" type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
                     id="kick{{member.user.username}}">Delete Club</button>
+                </div>
                 {% endif %}
             {% else %}
-                <h1>{{member.user}} • Member</h1>
+            <div class="col-3">
+                <h1>{{member.user}} • Member</h1></div>
                 {% if m %}
+                <div class="col-3">
                 <button class="view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
+                    </div>  
+                    <div class="col-3">
                 <button class="view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
                     id="kick{{member.user.username}}">Delete Club</button>
+                    </div>
                 {% endif %}
             {% endif %}
 
 
             {% if member.isPresident and not member.isCreator %}
+            <div class="col-3">
                 <button class="view" type="submit" name="makeMember{{member.id}}">Make Member</button>
+            </div>
             {% elif not member.isPresident and not member.isCreator %}
+        <div class="col-3"> 
                 <button class="view"type="submit" name="makePresident{{member.id}}">Make President</button>
-            {% endif %}
+            </div>
+                {% endif %}
 
             </div>
         {% endfor %}
