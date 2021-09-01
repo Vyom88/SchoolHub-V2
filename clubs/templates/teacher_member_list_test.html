@@ -64,7 +64,7 @@
                 <h2>{{member.user}}</h2>
             </div>
             <div class="col-3">
-                <h5 class="float-end" style="margin: 0;">creator</h5>
+                <h5 class="float-end" style="margin: 0;">Creator</h5>
             </div>
 
             {% elif member.isCreator %}
@@ -72,19 +72,19 @@
                 <h2>{{member.user}}</h2>
             </div>
             <div class="col-3">
-                <h5>teacher</h5>
+                <h5 class="float-end">Teacher</h5>
             </div>
                 {% if m %}
             
-            <div class="col-3">
-                <button class="float-end buttons"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
-                    class="{{member.user.username}}">Kick</button>
-                </div>
+                    <div class="col-3">
+                        <button class="float-end view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                        class="{{member.user.username}}">Kick</button>
+                    </div>
             
-                <button class="float-end buttons"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
+                    <button class="float-end view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
                 
-                    {% endif %}
+                {% endif %}
             
             {% elif member.isPresident %}
             <div class="col-3">
@@ -101,7 +101,8 @@
                 
                 <button class="view" type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                
+                {% else %}
+                <div class="col-3"></div>
                 {% endif %}
             {% else %}
             <div class="col-3">
@@ -115,7 +116,8 @@
                     
                 <button class="view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                    
+                {% else %}
+                    <div class="col-3"></div>
                 {% endif %}
             {% endif %}
 

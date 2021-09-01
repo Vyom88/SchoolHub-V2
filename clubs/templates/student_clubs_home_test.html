@@ -57,6 +57,7 @@
 {%endblock%}
 
     {%block body%}
+    <div class="container">
     <form method="POST">
 
         {% csrf_token %}
@@ -65,20 +66,26 @@
         <button name="otherClubs" type="submit">Other Clubs</button> <br>
 
 
-        {% for club in clubs %}
-
-        <h1>{{club.name}}</h1>
-        <h4>{{club.description}}</h4>
-
-        {% if yourClubs2 %}
-        <button name="view{{club.id}}" type="submit">View</button>
-        <button onClick="leave2(this.id)" id="leave{{club.name}}leave" type="button">Leave</button>
-        <button name="leave{{club.name}}" id="leave{{club.name}}" type="submit" style="visibility:hidden;">Leave</button>
-        {% else %}
-        <button name="join{{club.id}}" type="submit">Join</button>
-        {% endif %}
-
-        {% endfor %}
-
+        <div class=" announcements-whole">
+            {% for club in clubs %}
+            <div class="announcement-list row">
+                <div class='col-10'>
+                <h1>{{club.name}}</h1>
+                <h4>{{club.description}}</h4>
+                </div>
+            
+                <div class=" col-2 justify-content-center d-flex">
+                {% if yourClubs2 %}
+                <button class="view"name="view{{club.id}}" type="submit">View</button>
+                <button class="view"onClick="leave2(this.id)" id="leave{{club.name}}leave" type="button">Leave</button>
+                <button name="leave{{club.name}}" id="leave{{club.name}}" type="submit" style="visibility:hidden; display:none;">Leave</button>
+                {% else %}
+                    <button class="view"name="join{{club.id}}" type="submit">Join</button>
+                {% endif %}
+            </div>
+        </div>
+            {% endfor %}
+        </div>
     </form>
+</div>
 {%endblock%}

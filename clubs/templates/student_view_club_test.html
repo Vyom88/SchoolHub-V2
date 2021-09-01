@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'base_club.html'%}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SchoolHub</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {% load crispy_forms_tags %}
-
+{%block script%}
 
     <script>
         domain = "http://127.0.0.1:8000";
@@ -41,66 +31,107 @@
 
 
     </script>
+{%endblock%}
 
 
-</head>
 
-<body>
-
+{%block body%}
+<div class="container">
     <form method="POST">
 
         {% csrf_token %}
+   <div class="row">
+       <div class="col-1">
+        <button class="back d-inline"name="back" type="submit">&#129044</button> <br>
+    </div>
+   
+    </div>
+   
+    <h1 class="dashboard">{{club.name}}</h1> 
+    <hr>
+    <h2 class="text-center" style="margin-top: 30px;">{{club.description}}</h5>  
+        
+<div class="row align-items-start">
 
-        <button name="back" type="submit">Back</button> <br>
-        <h2>{{club.name}}</h2>
-        <h5>{{club.description}}</h5> <br>
 
+        <!--ANNOUNCEMENTS-->
 
-        <br> <br>
-        <h4>Announcements</h4>
+        <div class=" col-md-8">
+        <br>
+        <div class="heading-club heading"><h3>announcements</h3></div>
+        <div class="create create-club announcements-whole-club">
         {% for announcement in announcements %}
-
+        
+        <div class="announcement-list row g-0 ">
+            <div class="col-lg-10">
         <h1>{{announcement.announcement_title}}</h1>
         <h4>{{announcement.announcement_content}}</h4>
-        <button name="a{{announcement.id}}" type="submit">View</button>
-
+    </div>
+    <div class="col-lg-2 justify-content-center d-flex">
+        <button class="view" name="a{{announcement.id}}" type="submit">View</button>
+    </div>
+</div>
+        
         {% endfor %}
+    </div>
 
-        <br> <br>
+</div>
 
-        <h4>Events</h4>
+        <!--EVENTS-->
+   
+        <div class="col-md-4">
+        <br> 
+
+        <div class="heading-club heading"><h3>Events</h3></div>
+
+        <div class="create create-club announcements-whole-club">
         {% for event in events %}
-
+        <div class="announcement-list row g-0">
+            <div class='col-lg-9'>
         <h1>{{event.event_title}}</h1>
         <h4>{{event.event_content}} • {{event.event_date}}</h4>
-        <button name="e{{event.id}}" type="submit">View</button>
+    </div>
+    
+    <div class="col-lg-3 justify-content-center d-flex">
+        
+        <button class="view"name="e{{event.id}}" type="submit">View</button>
+    
+    </div>
+</div>
 
         {% endfor %}
+</div>
+    
+        <br> <br> 
+        <br>
+        <div class="heading-club heading"><h3>Members</h3></div>
 
-        <br> <br>
-        <h4>Members</h4>
+        <div class="create create-club announcements-whole-club">
         {% for member in members %}
+        <div class="announcement-list row g-0">
         {% if member.isOwner %}
-            <h1>{{member.user}} • Creator</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Creator</h5>
         {% elif member.isCreator %}
-            <h1>{{member.user}} • Teacher</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Teacher</h5>
         {% elif member.isPresident %}
-            <h1>{{member.user}} • President</h1>
+            <h2>{{member.user}}</h2>
+            <h5>President</h5>
         {% else %}
-            <h1>{{member.user}} • Member</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Member</h5>
         {% endif %}
-
+        </div>
         {% endfor %}
+        </div>
+        <button class="float-end buttons"name="member_list" type="submit">Members List</button>
+    </div>
 
+
+</div>
+           
     </form>
+</div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+{%endblock%}
