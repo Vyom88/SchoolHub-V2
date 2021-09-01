@@ -45,45 +45,50 @@
     <form method="POST">
 
         {% csrf_token %}
-   
-        <button class="back"name="back" type="submit">&#129044</button> <br>
-        
+   <div class="row">
+       <div class="col-1">
+        <button class="back d-inline"name="back" type="submit">&#129044</button> <br>
+    </div>
+    <div class="col-11">
+        {% if member2.isOwner %}
+        <div class="d-inline">
+            <button class=" float-end d-inline buttons"type="button" onClick="delete_club2()" style="margin-top: 0;">Delete Club</button>
+            <br>
+            <button type="submit" name="delete_club" style="visibility: hidden; display:none;" id="delete_club">Delete Club</button>
+        </div>
+            {% endif %}
+    
+    </div>
+    </div>
+    <div class="float-end">
+    <h5 class=" d-inline " >Code: {{passcode}}</h2>
+        {% if member2.isOwner %}
+            <button id="refreshed"class="pl-0 d-inline"type="submit" name="refresh"><img src="https://img.icons8.com/ios-glyphs/20/000000/refresh--v1.png"/></button> 
+        {% endif %}
+    </div><br><br>
 
         <h1 class="dashboard">{{club.name}}</h1> 
         <hr>
 
-
-        {% if member2.isOwner %}
-        <div class="">
-            <button class="buttons"type="button" onClick="delete_club2()">Delete Club</button>
-            <br>
-            <button type="submit" name="delete_club" style="visibility: hidden;" id="delete_club">Delete Club</button>
-        </div>
-            {% endif %}
-
-        <h5>{{club.description}}</h5> <br> <h5>Passcode: {{passcode}}</h5>
-
-        {% if member2.isOwner %}
-            <button type="submit" name="refresh">Refresh (put a icon here)</button> <br> <br>
-        {% endif %}
-
+        <h2 class="text-center" style="margin-top: 30px;">{{club.description}}</h5>  
+        
 <div class="row align-items-start">
 
 
         <!--ANNOUNCEMENTS-->
 
-        <div class=" col-8">
-        <br> <br>
+        <div class=" col-md-8">
+        <br>
         <div class="heading-club heading"><h3>announcements</h3></div>
         <div class="create create-club announcements-whole-club">
         {% for announcement in announcements %}
         
         <div class="announcement-list row g-0 ">
-            <div class="col-10">
+            <div class="col-lg-10">
         <h1>{{announcement.announcement_title}}</h1>
         <h4>{{announcement.announcement_content}}</h4>
     </div>
-    <div class="col-2 justify-content-center d-flex">
+    <div class="col-lg-2 justify-content-center d-flex">
         <button class="view" name="a{{announcement.id}}" type="submit">View</button>
     </div>
 </div>
@@ -96,20 +101,20 @@
 
         <!--EVENTS-->
    
-        <div class="col-4">
-        <br> <br>
+        <div class="col-md-4">
+        <br> 
 
         <div class="heading-club heading"><h3>Events</h3></div>
 
         <div class="create create-club announcements-whole-club">
         {% for event in events %}
         <div class="announcement-list row g-0">
-            <div class='col-9'>
+            <div class='col-lg-9'>
         <h1>{{event.event_title}}</h1>
         <h4>{{event.event_content}} • {{event.event_date}}</h4>
     </div>
     
-    <div class=" col-3 justify-content-center d-flex">
+    <div class=" col-lg-3 justify-content-center d-flex">
         
         <button class="view"name="e{{event.id}}" type="submit">View</button>
     
@@ -123,20 +128,26 @@
 
 
     
-        <br> <br> <br> <br>
+        <br> <br> 
+        <br> <br>
+        <br>
         <div class="heading-club heading"><h3>Members</h3></div>
 
         <div class="create create-club announcements-whole-club">
         {% for member in members %}
         <div class="announcement-list row g-0">
         {% if member.isOwner %}
-            <h1>{{member.user}} • Creator</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Creator</h5>
         {% elif member.isCreator %}
-            <h1>{{member.user}} • Teacher</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Teacher</h5>
         {% elif member.isPresident %}
-            <h1>{{member.user}} • President</h1>
+            <h2>{{member.user}}</h2>
+            <h5>President</h5>
         {% else %}
-            <h1>{{member.user}} • Member</h1>
+            <h2>{{member.user}}</h2>
+            <h5>Member</h5>
         {% endif %}
         </div>
         {% endfor %}
@@ -150,7 +161,8 @@
         <!--MEMBERS-->
         
 
-    
+        
+           
     </form>
 </div>
 

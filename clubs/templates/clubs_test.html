@@ -50,11 +50,13 @@
 
         {% csrf_token %}
 
-        <div class="container btn-group d-flex justify-content-center " role="group" aria-label="clubs toggle">
-            <button class="btn club-toggle" id="club-toggle"name="yourClubs" type="submit" onclick="change()">Your Clubs</button>
-            <button class="btn club-toggle" name="otherClubs" type="submit">Other Clubs</button>
-          </div>
 
+
+      
+        <div class="container btn-group d-flex justify-content-center" >
+            <button name="yourClubs" type="submit" >Your Clubs</button>
+            <button name="otherClubs" type="submit">Other Clubs</button>
+          </div>
        
         <br>
 
