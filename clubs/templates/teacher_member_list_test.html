@@ -61,61 +61,72 @@
         
             {% if member.isOwner %}
             <div class="col-3">
-                <h5>{{member.user}} creator</h5>
+                <h2>{{member.user}}</h2>
             </div>
+            <div class="col-3">
+                <h5 class="float-end" style="margin: 0;">creator</h5>
+            </div>
+
             {% elif member.isCreator %}
             <div class="col-3">
-                <h1>{{member.user}} teacher</h1>
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-3">
+                <h5>teacher</h5>
             </div>
                 {% if m %}
             
             <div class="col-3">
-                <button class="buttons"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                <button class="float-end buttons"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
                 </div>
-            <div class="col-4">
-                <button class="buttons"type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+            
+                <button class="float-end buttons"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                </div>
+                
                     {% endif %}
             
             {% elif member.isPresident %}
             <div class="col-3">
-                <h1>{{member.user}} • President</h1>
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-3">
+                <h5 class="float-end">President</h5>
             </div>
                 {% if m %}
                 <div class="col-3">
-                <button class="view" type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                <button class="float-end view" type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
                 </div>
-                <div class="col-3">
-                <button class="view" type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+                
+                <button class="view" type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                </div>
+                
                 {% endif %}
             {% else %}
             <div class="col-3">
-                <h1>{{member.user}} • Member</h1></div>
+                <h2>{{member.user}}</h2></div>
+                <div class="col-3"><h5 class="float-end">Member</h5></div>
                 {% if m %}
                 <div class="col-3">
-                <button class="view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                <button class="float-end view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
                     class="{{member.user.username}}">Kick</button>
                     </div>  
-                    <div class="col-3">
-                <button class="view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden;"
+                    
+                <button class="view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
                     id="kick{{member.user.username}}">Delete Club</button>
-                    </div>
+                    
                 {% endif %}
             {% endif %}
 
 
             {% if member.isPresident and not member.isCreator %}
             <div class="col-3">
-                <button class="view" type="submit" name="makeMember{{member.id}}">Make Member</button>
+                <button class="float-end view" type="submit" name="makeMember{{member.id}}">Make Member</button>
             </div>
             {% elif not member.isPresident and not member.isCreator %}
-        <div class="col-3"> 
-                <button class="view"type="submit" name="makePresident{{member.id}}">Make President</button>
+        <div class="col-3 "> 
+                <button class="float-end view"type="submit" name="makePresident{{member.id}}">Make President</button>
             </div>
                 {% endif %}
 
