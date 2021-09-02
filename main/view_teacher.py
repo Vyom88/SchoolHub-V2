@@ -59,10 +59,12 @@ def school_create_announcement(request):
             title = request.POST.get('title')
             description = request.POST.get('description')
 
-            school.announcements_set.create(
-                announcement_title=title, announcement_content=description)
+            if title != None and title != "" and description != "" and description != None:
 
-            return HttpResponseRedirect('/teacher-home')
+                school.announcements_set.create(
+                    announcement_title=title, announcement_content=description)
+
+                return HttpResponseRedirect('/teacher-home')
 
     return render(request, "create_announcement_test.html", {"school": school})
 
@@ -102,10 +104,12 @@ def school_create_event(request):
             description = request.POST.get('description')
             date = request.POST.get('date')
 
-            school.events_set.create(
-                event_title=title, event_content=description, event_date=date)
+            if title != None and title != "" and description != "" and description != None and date != "" and date != None:
 
-            return HttpResponseRedirect('/teacher-school-event')
+                school.events_set.create(
+                    event_title=title, event_content=description, event_date=date)
+
+                return HttpResponseRedirect('/teacher-school-event')
 
     return render(request, "create_event_test.html", {"user": user, "school": school})
 

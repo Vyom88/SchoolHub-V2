@@ -85,10 +85,12 @@ def create_club_announcement_pres(request, id):
             title = request.POST.get('title')
             description = request.POST.get('description')
 
-            club.announcements_set.create(
-                announcement_title=title, announcement_content=description)
+            if title != None and title != "" and description != "" and description != None:
 
-            return HttpResponseRedirect(f'/president-view-club/{club.id}')
+                club.announcements_set.create(
+                    announcement_title=title, announcement_content=description)
+
+                return HttpResponseRedirect(f'/president-view-club/{club.id}')
 
     return render(request, "create_club_announcement_test.html", {"user": user, "school": school, "club": club})
 
@@ -115,10 +117,12 @@ def create_club_event_pres(request, id):
             description = request.POST.get('description')
             date = request.POST.get('date')
 
-            club.events_set.create(
-                event_title=title, event_content=description, event_date=date)
+            if title != None and title != "" and description != "" and description != None and date != "" and date != None:
 
-            return HttpResponseRedirect(f'/president-view-club/{club.id}')
+                club.events_set.create(
+                    event_title=title, event_content=description, event_date=date)
+
+                return HttpResponseRedirect(f'/president-view-club/{club.id}')
 
     return render(request, "create_club_event_test.html", {"user": user, "school": school, "club": club})
 
