@@ -144,6 +144,11 @@
             border-color: #950707;
         }
 
+        .school-name{
+            margin-top: 50px;
+            font-size: 4rem;
+            color: #c02c2c;
+        }
 
         /*Login/Signup Section*/
 
@@ -446,16 +451,15 @@
                 {{ field.errors }}
                 {{ field }}
             {% endfor %} -->
-            
-            <label>School Name: </label>
+            <div class="d-flex justify-content center">            
+                <label ><h1 class="school-name">School Name: </h1></label>
             <input type="text" name="school_name"/>
 
-            <br>
-            
-
-            
-
+            </div>
+        <div class="d-flex justify-content center">  
         <input type="submit" value="Create School">
+    </div>
+
     </form>
 
 

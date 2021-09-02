@@ -46,6 +46,8 @@
         window.location.replace(domain + "/teacher-home");
     }
 
+    
+
     function teacher_event_page() {
         window.location.replace(domain + "/teacher-school-event");
     }
@@ -56,7 +58,14 @@
 
     function teacher_club_page() {
         window.location.replace(domain + "/teacher-clubs");
+
+    
     }
+
+    const ann = document.getElementById("announcements");
+            ann.addEventListener('click', event => {
+            ann.style.fontWeight = 700; 
+            });
 
 </script>
 {%endblock%}

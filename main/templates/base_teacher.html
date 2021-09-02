@@ -11,13 +11,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     {% load crispy_forms_tags %}
-    <script>
-        function logout() {
-            window.location.replace(domain + "/logout");
-        }
-    </script>
-    {%block script%}
-    {%endblock%}
+   
     
 </head>
 
@@ -48,12 +42,13 @@
       <hr>
 
     <div class="container-fluid navigationMini row">
-    <button class="navMini col-sm text-sm-end"id="events"onClick="teacher_event_page()">events</button>
-    <button class="navMini col-sm"id="announcements"onClick="teacher_announcement_page()">announcements</button>
+    <button class="navMini col-sm text-sm-end"id="events"onClick="teacher_event_page();">events</button>
+    <button class="navMini col-sm"id="announcements"onClick="teacher_announcement_page(); boldAnn();">announcements</button>
     <button class="navMini col-sm text-sm-start"id="clubs"onClick="teacher_club_page()">clubs</button>
     </div>
 
     <style>
+        
         nav{
             background-color: white;
             margin-bottom: 40px;
@@ -111,9 +106,7 @@
             margin-left: 20px;
             margin-right: 20px;
         }
-        #announcements{
-            font-weight: 700;
-        }
+        
         .buttons{
             background-color: #EC7F00;
             color: white;
@@ -230,8 +223,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+ {%block script%}
+        {%endblock%}
+        <script>
+            function logout() {
+                window.location.replace(domain + "/logout");
+            }
+           
 
-        
+        </script>
+       
 </body>
 
 </html>
