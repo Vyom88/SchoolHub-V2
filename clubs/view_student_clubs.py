@@ -96,7 +96,7 @@ def student_view_club(request, id):
     announcements = reversed(announcements)
     events = reversed(events)
 
-    return render(request, 'student_view_club_test.html', {"user": user, "school": school, "announcements": announcements, "events": events, "members": members})
+    return render(request, 'student_view_club_test.html', {"user": user, "school": school, "club": club, "announcements": announcements, "events": events, "members": members})
 
 
 @login_required
