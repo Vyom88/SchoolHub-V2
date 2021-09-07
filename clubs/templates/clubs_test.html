@@ -1,0 +1,85 @@
+{%extends 'base_teacher.html'%}
+
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function redirect_to_student_home_page() {
+            window.location.replace(domain + "/student-home");
+
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_club_page() {
+            window.location.replace(domain + "/teacher-clubs");
+        }
+
+        function change(){
+            document.getElementById('club-toggle').style.backgroundColor = "black";
+        }
+    </script>
+{%endblock%}
+
+
+{%block body%}
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+
+      
+        <div class="container btn-group d-flex justify-content-center" >
+            <button class="clubs-btn"name="yourClubs" type="submit" >Your Clubs</button>
+            <button class="clubs-btn"name="otherClubs" type="submit">Other Clubs</button>
+          </div>
+       
+        <br>
+
+        <button class="buttons"name="addClub" type="submit">Add Club</button>
+        <br>
+        <div class=" announcements-whole">
+        {% for club in clubs %}
+        <div class="announcement-list row">
+            <div class='col-10'>
+            <h1>{{club.name}}</h1>
+            <h4>{{club.description}}</h4>
+            </div>
+        
+            <div class=" col-2 justify-content-center d-flex">
+            {% if yourClubs2 %}
+                <button class="view" name="view{{club.id}}" type="submit">View</button>
+            {% else %}
+                <button class="view"name="join{{club.id}}" type="submit">Join</button>
+            {% endif %}
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+    </form>
+</div>
+{%endblock%}

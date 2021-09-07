@@ -1,0 +1,52 @@
+{%extends 'base_club.html'%}
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+
+    </script>
+{%endblock%}
+{%block body%}
+    <form method="POST">
+
+        {% csrf_token %}
+<div class="container">
+        <button class="back"name="back" type="submit">&#129044</button> <br>
+
+        <label>Enter Code:</label>
+        <input class="code"type="text" name="passcode" /><br>
+
+        {% if error %}
+        <h4 style="color: red;">You entered the wrong password. Please try again.</h4>
+        {% else %}
+            <h6 style="visibility: hidden; height: 6px;">Ayush = goat</h6>
+        {% endif %}
+
+        <button class="view" type="submit">Join</button>
+    </div>
+    </form>
+{%endblock%}

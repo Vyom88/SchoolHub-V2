@@ -1,0 +1,68 @@
+{%extends 'base_club.html'%}
+
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function redirect_to_student_home_page() {
+            window.location.replace(domain + "/student-home");
+
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_club_page() {
+            window.location.replace(domain + "/teacher-clubs");
+        }
+
+    </script>
+{%endblock%}
+
+
+    {%block body%}
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="back"name="back" type="submit">&#129044</button>
+
+        <div class="heading"><h3>Create Club Event</h3></div>
+        <div class=" container create">
+
+        <label>Event Title: </label>
+        <input class="input-title"type="text" name="title" />
+
+        <label>Event Description: </label>
+        <textarea class="input-description input-title" type="text" name="description" ></textarea><br>
+
+        <label>Event Date (MM/DD Hour:Min): </label>
+        <input class="input-title"type="text" name="date" /><br>
+
+        <button class="buttons"name="create" type="submit">Create</button>
+</div>
+    </form>
+</div>
+{%endblock%}

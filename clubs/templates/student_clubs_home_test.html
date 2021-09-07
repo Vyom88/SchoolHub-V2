@@ -1,0 +1,91 @@
+{%extends 'base_student.html'%}
+
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function redirect_to_student_home_page() {
+            window.location.replace(domain + "/student-home");
+
+        }
+        function student_announcement_page() {
+            window.location.replace(domain + "/student-home");
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function student_event_page() {
+            window.location.replace(domain + "/student-school-event");
+        }
+
+        function student_clubs_page() {
+            window.location.replace(domain + "/student-clubs");
+        }
+
+        function leave2(clicked){
+            var name = clicked.split("leave");
+            name = name[1];
+            var val = confirm("Do you want to leave " + name + "?")
+            if (val == true){
+                document.getElementById("leave" + name).click();
+            }
+        }
+
+    </script>
+{%endblock%}
+
+    {%block body%}
+    <div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button name="yourClubs" type="submit">Your Clubs</button>
+        <button name="otherClubs" type="submit">Other Clubs</button> <br>
+
+
+        <div class=" announcements-whole">
+            {% for club in clubs %}
+            <div class="announcement-list row">
+                <div class='col-10'>
+                <h1>{{club.name}}</h1>
+                <h4>{{club.description}}</h4>
+                </div>
+            
+                <div class=" col-2 justify-content-center d-flex">
+                {% if yourClubs2 %}
+                <button class="view"name="view{{club.id}}" type="submit">View</button>
+                <button class="view"onClick="leave2(this.id)" id="leave{{club.name}}leave" type="button">Leave</button>
+                <button name="leave{{club.name}}" id="leave{{club.name}}" type="submit" style="visibility:hidden; display:none;">Leave</button>
+                {% else %}
+                    <button class="view"name="join{{club.id}}" type="submit">Join</button>
+                {% endif %}
+            </div>
+        </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+{%endblock%}

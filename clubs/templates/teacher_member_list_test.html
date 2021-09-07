@@ -1,0 +1,142 @@
+{%extends 'base_club.html'%}
+
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function kick2(clicked) {
+            var val = confirm("Do you want to kick " + clicked + " from {{club.name}}?");
+            if (val == true) {
+                let s = "kick" + clicked;
+                document.getElementById(s).click();
+            }
+        }
+
+
+    </script>
+{%endblock%}
+
+
+{%block body%}
+
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="back"name="back" type="submit">&#129044</button> <br>
+        
+        <h1 class="dashboard">{{club.name}}</h1> 
+        <hr>
+<br><br>
+        <div class="heading-club heading"><h3>Club Members</h3></div>
+        <div class="create create-club announcements-whole-club">
+            {% for member in members %}
+            <div class="announcement-list row g-0">
+                
+        
+            {% if member.isOwner %}
+            <div class="col-3">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-3">
+                <h5 class="float-end" style="margin: 0;">Creator</h5>
+            </div>
+
+            {% elif member.isCreator %}
+            <div class="col-3">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-3">
+                <h5 class="float-end">Teacher</h5>
+            </div>
+                {% if m %}
+            
+                    <div class="col-3">
+                        <button class="float-end view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                        class="{{member.user.username}}">Kick</button>
+                    </div>
+            
+                    <button class="float-end view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                
+                {% endif %}
+            
+            {% elif member.isPresident %}
+            <div class="col-3">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-3">
+                <h5 class="float-end">President</h5>
+            </div>
+                {% if m %}
+                <div class="col-3">
+                <button class="float-end view" type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                    class="{{member.user.username}}">Kick</button>
+                </div>
+                
+                <button class="view" type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                {% else %}
+                <div class="col-3"></div>
+                {% endif %}
+            {% else %}
+            <div class="col-3">
+                <h2>{{member.user}}</h2></div>
+                <div class="col-3"><h5 class="float-end">Member</h5></div>
+                {% if m %}
+                <div class="col-3">
+                <button class="float-end view"type="button" onClick="kick2(this.id)" id="{{member.user.username}}"
+                    class="{{member.user.username}}">Kick</button>
+                    </div>  
+                    
+                <button class="view"type="submit" name="kick{{member.user.username}}" style="visibility: hidden; display: none;"
+                    id="kick{{member.user.username}}">Delete Club</button>
+                {% else %}
+                    <div class="col-3"></div>
+                {% endif %}
+            {% endif %}
+
+
+            {% if member.isPresident and not member.isCreator %}
+            <div class="col-3">
+                <button class="float-end view" type="submit" name="makeMember{{member.id}}">Make Member</button>
+            </div>
+            {% elif not member.isPresident and not member.isCreator %}
+        <div class="col-3 "> 
+                <button class="float-end view"type="submit" name="makePresident{{member.id}}">Make President</button>
+            </div>
+                {% endif %}
+
+            </div>
+        {% endfor %}
+        </div>
+    </form>
+</div>
+{%endblock%}
+
+ 

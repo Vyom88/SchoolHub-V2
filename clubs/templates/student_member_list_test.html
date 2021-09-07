@@ -1,0 +1,92 @@
+{%extends 'base_club.html'%}
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+
+    </script>
+{%endblock%}
+
+{%block body%}
+
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="back"name="back" type="submit">&#129044</button> <br>
+        
+        <h1 class="dashboard">{{club.name}}</h1> 
+        <hr>
+<br><br>
+        <div class="heading-club heading"><h3>Club Members</h3></div>
+        <div class="create create-club announcements-whole-club">
+            {% for member in members %}
+            <div class="announcement-list row g-0">
+                
+        
+            {% if member.isOwner %}
+            <div class="col-sm-8">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <h5  style="margin: 0;">Creator</h5>
+            </div>
+
+            {% elif member.isCreator %}
+            <div class="col-sm-8">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <h5 >Teacher</h5>
+            </div>
+              
+            {% elif member.isPresident %}
+            <div class="col-sm-8">
+                <h2>{{member.user}}</h2>
+            </div>
+            <div class="col-sm-4">
+                <h5 >President</h5>
+            </div>
+               
+            {% else %}
+            <div class="col-sm-8">
+                <h2>{{member.user}}</h2></div>
+                <div class="col-sm-4"><h5 >Member</h5></div>
+              
+            {% endif %}
+
+
+
+            </div>
+        {% endfor %}
+        </div>
+    </form>
+</div>
+{%endblock%}
+
+

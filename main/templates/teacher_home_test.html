@@ -1,0 +1,71 @@
+{% extends 'base_teacher.html' %}
+
+ 
+
+
+    {%block body%}
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="buttons" name="create_announcement" type="submit">Create Announcement</button>
+
+        <div class=" announcements-whole">
+        {% for announcement in announcements %}
+        <div class="announcement-list row">
+            <div class='col-10'>
+            <h1>{{announcement.announcement_title}}</h1>
+            <h4>{{announcement.announcement_content}}</h4>
+            </div>
+            <div class=" col-2 justify-content-center d-flex">
+            <button class="view " name="{{announcement.id}}" type="submit">View</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </form>
+</div>
+{%endblock%}
+{%block script%}
+<script>
+    domain = "http://127.0.0.1:8000";
+    function teacherbutton() {
+        window.location.replace(domain + "/register/teacher-sign-up");
+    }
+
+    function redirect_to_login_page() {
+        window.location.replace(domain + "/login");
+    }
+
+    function redirect_to_sign_up_page() {
+        window.location.replace(domain + "/register/student-sign-up");
+    }
+
+    function redirect_to_teacher_home_page() {
+        window.location.replace(domain + "/teacher-home");
+    }
+
+    
+
+    function teacher_event_page() {
+        window.location.replace(domain + "/teacher-school-event");
+    }
+
+    function teacher_announcement_page() {
+        window.location.replace(domain + "/teacher-home");
+    }
+
+    function teacher_club_page() {
+        window.location.replace(domain + "/teacher-clubs");
+
+    
+    }
+
+    const ann = document.getElementById("announcements");
+            ann.addEventListener('click', event => {
+            ann.style.fontWeight = 700; 
+            });
+
+</script>
+{%endblock%}

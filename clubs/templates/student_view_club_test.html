@@ -1,0 +1,137 @@
+{%extends 'base_club.html'%}
+
+
+{%block script%}
+
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+
+    </script>
+{%endblock%}
+
+
+
+{%block body%}
+<div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+   <div class="row">
+       <div class="col-1">
+        <button class="back d-inline"name="back" type="submit">&#129044</button> <br>
+    </div>
+   
+    </div>
+   
+    <h1 class="dashboard">{{club.name}}</h1> 
+    <hr>
+    <h2 class="text-center" style="margin-top: 30px;">{{club.description}}</h5>  
+        
+<div class="row align-items-start">
+
+
+        <!--ANNOUNCEMENTS-->
+
+        <div class=" col-md-8">
+        <br>
+        <div class="heading-club heading"><h3>Announcements</h3></div>
+        <div class="create create-club announcements-whole-club">
+        {% for announcement in announcements %}
+        
+        <div class="announcement-list row g-0 ">
+            <div class="col-lg-10">
+        <h1>{{announcement.announcement_title}}</h1>
+        <h4>{{announcement.announcement_content}}</h4>
+    </div>
+    <div class="col-lg-2 justify-content-center d-flex">
+        <button class="view" name="a{{announcement.id}}" type="submit">View</button>
+    </div>
+</div>
+        
+        {% endfor %}
+    </div>
+
+</div>
+
+        <!--EVENTS-->
+   
+        <div class="col-md-4">
+        <br> 
+
+        <div class="heading-club heading"><h3>Events</h3></div>
+
+        <div class="create create-club announcements-whole-club">
+        {% for event in events %}
+        <div class="announcement-list row g-0">
+            <div class='col-lg-9'>
+        <h1>{{event.event_title}}</h1>
+        <h4>{{event.event_content}} • {{event.event_date}}</h4>
+    </div>
+    
+    <div class="col-lg-3 justify-content-center d-flex">
+        
+        <button class="view"name="e{{event.id}}" type="submit">View</button>
+    
+    </div>
+</div>
+
+        {% endfor %}
+</div>
+    
+        <br> <br> 
+        <br>
+        <div class="heading-club heading"><h3>Members</h3></div>
+
+        <div class="create create-club announcements-whole-club">
+        {% for member in members %}
+        <div class="announcement-list row g-0">
+        {% if member.isOwner %}
+            <h2>{{member.user}}</h2>
+            <h5>Creator</h5>
+        {% elif member.isCreator %}
+            <h2>{{member.user}}</h2>
+            <h5>Teacher</h5>
+        {% elif member.isPresident %}
+            <h2>{{member.user}}</h2>
+            <h5>President</h5>
+        {% else %}
+            <h2>{{member.user}}</h2>
+            <h5>Member</h5>
+        {% endif %}
+        </div>
+        {% endfor %}
+        </div>
+        <button class="float-end buttons"name="member_list" type="submit">Members List</button>
+    </div>
+
+
+</div>
+           
+    </form>
+</div>
+
+{%endblock%}

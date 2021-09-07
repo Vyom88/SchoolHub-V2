@@ -1,0 +1,69 @@
+{%extends 'base_student.html'%}
+
+
+{%block script%}
+    <script>
+        domain = "http://127.0.0.1:8000";
+        function teacherbutton() {
+            window.location.replace(domain + "/register/teacher-sign-up");
+        }
+
+        function redirect_to_login_page() {
+            window.location.replace(domain + "/login");
+        }
+
+        function redirect_to_sign_up_page() {
+            window.location.replace(domain + "/register/student-sign-up");
+        }
+
+        function redirect_to_teacher_home_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function redirect_to_student_home_page() {
+            window.location.replace(domain + "/student-home");
+
+        }
+
+        function teacher_event_page() {
+            window.location.replace(domain + "/teacher-school-event");
+        }
+
+        function teacher_announcement_page() {
+            window.location.replace(domain + "/teacher-home");
+        }
+
+        function student_event_page() {
+            window.location.replace(domain + "/student-school-event");
+        }
+
+        function student_announcement_page() {
+            window.location.replace(domain + "/student-home");
+        }
+
+        function student_clubs_page() {
+            window.location.replace(domain + "/student-clubs");
+        }
+
+
+    </script>
+{%endblock%}
+
+
+
+    {%block body%}
+    <div class="container">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button class="back"name="back" type="submit">&#129044</button>
+        <div class=" container zoom-in">
+        <h1>{{announcement.announcement_title}}</h1>
+        <h4>{{announcement.announcement_content}}</h4>
+        </div>
+    </form>
+</div>
+{%endblock%}
+
+   
