@@ -1,3 +1,4 @@
+import django_heroku
 """
 Django settings for SchoolHub project.
 
@@ -25,7 +26,7 @@ SECRET_KEY = 't87l$kyyyia&@g7@lcukz8rgk(88)!2j*9ex&j61m(ww$(fi7a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://schoolhub-v2.herokuapp.com']
 
 
 # Application definition
@@ -137,3 +138,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
 
 AUTH_USER_MODEL = 'register.User'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
