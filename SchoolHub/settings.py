@@ -1,3 +1,5 @@
+import django_heroku
+from dotenv import load_dotenv
 """
 Django settings for SchoolHub project.
 
@@ -12,6 +14,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't87l$kyyyia&@g7@lcukz8rgk(88)!2j*9ex&j61m(ww$(fi7a'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://schoolhub-v2.herokuapp.com']
 
 
 # Application definition
@@ -137,3 +143,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
 
 AUTH_USER_MODEL = 'register.User'
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
