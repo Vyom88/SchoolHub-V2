@@ -62,8 +62,11 @@
 
         {% csrf_token %}
 
-        <button class="clubs-btn"name="yourClubs" type="submit">Your Clubs</button>
-        <button class="clubs-btn"name="otherClubs" type="submit">Other Clubs</button> <br>
+        <div class="container btn-group d-flex justify-content-center">
+            <button class="clubs-btn" name="yourClubs" type="submit">Your Clubs</button>
+            <button class="clubs-btn" name="otherClubs" type="submit">Other Clubs</button>
+        </div>
+        <br>
 
 
         <div class=" announcements-whole">
